@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import ErrorModal from './ErrorModal';
 
-function DeadlineBox(){
+export default function DeadlineBox(){
 
     const lemon = new Date();
 
@@ -9,6 +10,8 @@ function DeadlineBox(){
     const [year, setYear] = useState();
     const [hour, setHour] = useState();
     const [minute, setMinute] = useState();
+    const [errorMessage, setErrorMessage] = useState('');
+    const [validDate, setValidDate] = useState(true);
     const [deadline, setDeadline] = useState(new Date());
 
     const handleMonthChange = (event) => {
@@ -33,7 +36,72 @@ function DeadlineBox(){
 
     const applyChanges = () => {
 
-        setDeadline(new Date(year, month - 1, day, hour, minute));
+        var err = '';
+
+        if(month < 1 || month > 12){
+            err += 'Enter a valid month between 1 and 12.\n';
+        }
+
+        if( 
+            month == 1 || 
+            month == 3 || 
+            month == 5 || 
+            month == 7 || 
+            month == 8 || 
+            month == 10 || 
+            month == 12){
+
+            if(day < 1 || day > 31){
+                err += 'Enter a valid day between 1 and 31.\n';
+            }
+
+        }
+        else if(
+            month == 4 || 
+            month == 6 || 
+            month == 9 || 
+            month == 11){
+
+            if(day < 1 || day > 30){
+                err += 'Enter a valid day between 1 and 30.\n';
+            }
+
+        }
+        else if(month == 2){
+            
+            if(year % 4 === 0){
+                if(day < 1 || day > 29){
+                    err += 'Enter a valid day between 1 and 29.\n';
+                }
+            }
+            else{
+                if(day < 1 || day > 28){
+                    err += 'Enter a valid day between 1 and 28.\n';
+                }
+            }
+        }
+        else{
+            err += 'Enter a valid day.\n';
+        }
+
+        if(hour < 0 || hour > 23){
+            err += 'Enter a valid hour between 0 and 23.\n';
+        }
+
+        if(minute < 0 || minute > 59){
+            err += 'Enter a valid minute between 0 and 59.\n';
+        }
+
+        if(err.length !== 0){
+            setValidDate(false);
+            setErrorMessage(err);
+            console.log(errorMessage)
+        }
+        else{
+            setValidDate(true);
+            setDeadline(new Date(year, month - 1, day, hour, minute));
+        }
+        
     }
 
     return(
@@ -78,9 +146,17 @@ function DeadlineBox(){
             
 
 
-            <p>
-                {deadline.toString()}
-            </p>
+            {validDate && (
+                <p>
+                    {deadline.toString()}
+                </p>
+            )}
+
+            {!validDate && (
+                <ErrorModal 
+                    message = {errorMessage}
+                />
+            )}
 
             <button
                 onClick={applyChanges}
@@ -90,5 +166,3 @@ function DeadlineBox(){
         </div>
     )
 }
-
-export default DeadlineBox;
