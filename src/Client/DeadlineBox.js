@@ -5,27 +5,81 @@ function DeadlineBox(){
     const lemon = new Date();
 
     const [month, setMonth] = useState();
-    const [deadline, setDeadline] = useState();
+    const [day, setDay] = useState();
+    const [year, setYear] = useState();
+    const [hour, setHour] = useState();
+    const [minute, setMinute] = useState();
+    const [deadline, setDeadline] = useState(new Date());
 
-    const handleMonthChange = (e) => {
-        setMonth(e.target.value);
+    const handleMonthChange = (event) => {
+        setMonth(event.target.value);
+    }
+
+    const handleDayChange = (event) => {
+        setDay(event.target.value);
+    }
+
+    const handleYearChange = (event) => {
+        setYear(event.target.value);
+    }
+
+    const handleHourChange = (event) => {
+        setHour(event.target.value);
+    }
+
+    const handleMinuteChange = (event) => {
+        setMinute(event.target.value);
     }
 
     const applyChanges = () => {
-        console.log("asdf")
-        setDeadline(month);
+
+        setDeadline(new Date(year, month - 1, day, hour, minute));
     }
 
     return(
         <div>
-            <input
-                type='text'
-                value={month}
-                onChange={handleMonthChange}
-            />
+            <div>
+                <input
+                    type='text'
+                    value={month}
+                    onChange={handleMonthChange}
+                />
+                
+                /
+
+                <input
+                    type='text'
+                    value={day}
+                    onChange={handleDayChange}
+                />
+
+                /
+
+                <input
+                    type='text'
+                    value={year}
+                    onChange={handleYearChange}
+                />
+            </div>
+
+            <div>
+                <input
+                    type='text'
+                    value={hour}
+                    onChange={handleHourChange}
+                />
+                :
+                <input
+                    type='text'
+                    value={minute}
+                    onChange={handleMinuteChange}
+                />
+            </div>
+            
+
 
             <p>
-                {deadline}
+                {deadline.toString()}
             </p>
 
             <button
