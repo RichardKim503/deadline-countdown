@@ -10,13 +10,17 @@ export default function DeadlineBox(){
         setDeadline(newDeadline);
     }
 
-    const fuck = () => {
+    const showEdit = () => {
         setEdit(true);
+    }
+
+    const hideEdit = () => {
+        setEdit(false);
     }
 
     return(
         <div>
-            <button onClick={fuck}>
+            <button onClick={showEdit}>
                 Edit
             </button>
             <p>
@@ -25,9 +29,16 @@ export default function DeadlineBox(){
             </p>
 
             {edit && (
-                <DeadlineEdit 
-                    updateDeadline = {updateDeadline}
-                />
+                <div>
+                    <DeadlineEdit 
+                        updateDeadline = {updateDeadline}
+                    />
+
+                    <button onClick={hideEdit}>
+                        Cancel
+                    </button>
+                </div>
+                
             )}
             
         </div>

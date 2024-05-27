@@ -107,22 +107,29 @@ export default function DeadlineEdit({updateDeadline}){
         <div>
             <div>
                 <input
+                    className='date_input_form'
                     type='text'
                     value={month}
                     onChange={handleMonthChange}
                 />
                 
-                /
-
+                <p className='date_slash_text'>
+                    &nbsp;/&nbsp;
+                </p>
+                
                 <input
+                    className='date_input_form'
                     type='text'
                     value={day}
                     onChange={handleDayChange}
                 />
 
-                /
+                <p className='date_slash_text'>
+                    &nbsp;/&nbsp;
+                </p>
 
                 <input
+                    className='date_input_form'
                     type='text'
                     value={year}
                     onChange={handleYearChange}
@@ -131,12 +138,18 @@ export default function DeadlineEdit({updateDeadline}){
 
             <div>
                 <input
+                    className='date_input_form'
                     type='text'
                     value={hour}
                     onChange={handleHourChange}
                 />
-                :
+                
+                <p className='date_slash_text'>
+                    &nbsp;:&nbsp;
+                </p>
+
                 <input
+                    className='date_input_form'
                     type='text'
                     value={minute}
                     onChange={handleMinuteChange}

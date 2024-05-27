@@ -43,8 +43,23 @@
   border: dashed;
 }
 
+.deadline_table_column{
+  width: 33%;
+  height: 50%;
+}
+
 .deadline_container{
   border: solid;
-  width: 50%;
+  width: 100%;
   height: 100%;
+}
+
+.date_input_form{
+  width: 25px;
+  font-size: 20px;
+}
+
+.date_slash_text{
+  display: inline;
+  font-size: 25px;
 }
