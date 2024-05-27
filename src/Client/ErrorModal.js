@@ -8,9 +8,9 @@ export default function ErrorModal(props) {
 
     return(
         <div>
-            <p>
+            <pre>
                 {error}
-            </p>
+            </pre>
         </div>
     )
 }
