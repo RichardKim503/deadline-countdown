@@ -17,10 +17,6 @@ export default function DeadlineBox(){
         return () => clearInterval(interval);
     }, []);
 
-    const updateTitle = (newTitle) => {
-        editTitle(newTitle);
-    }
-
     const updateDeadline = (newDeadline) => {
         let temp = new Date(newDeadline).valueOf();
 
@@ -100,20 +96,30 @@ export default function DeadlineBox(){
     return(
         <div>
 
-            <p>
-                {title}
-            </p>
+            {!edit && (
+                <div>
+                    <p>
+                        {title}
+                    </p>
 
+                    {deadline > Date.now().valueOf() && (
+                    <p>
+                        {formatTimer(deadline - Date.now().valueOf())}
+                    </p>
+                    )}
 
-            {deadline > Date.now().valueOf() && (
-                <p>
-                    {formatTimer(deadline - Date.now().valueOf())}
-                </p>
+                    <button onClick={showEdit}>
+                        Edit
+                    </button>
+                </div>
             )}
-            
-            <button onClick={showEdit}>
-                Edit
-            </button>
+                
+
+                
+                
+                
+
+
             <p>
                 {/* {Date.now().toString()}
                 |
@@ -125,6 +131,8 @@ export default function DeadlineBox(){
                 |
                 {deadline - Date.now().valueOf()} */}
             </p>
+
+            
 
             {edit && (
                 <div>
