@@ -3,6 +3,7 @@ import DeadlineEdit from './DeadlineEdit';
 
 export default function DeadlineBox(){
 
+    const [title, editTitle] = useState();
     const [deadline, setDeadline] = useState();
     const [edit, setEdit] = useState(false);
 
@@ -15,6 +16,10 @@ export default function DeadlineBox(){
 
         return () => clearInterval(interval);
     }, []);
+
+    const updateTitle = (newTitle) => {
+        editTitle(newTitle);
+    }
 
     const updateDeadline = (newDeadline) => {
         let temp = new Date(newDeadline).valueOf();
@@ -67,6 +72,10 @@ export default function DeadlineBox(){
     return(
         <div>
 
+            <p>
+                {title}
+            </p>
+
 
             {deadline > Date.now().valueOf() && (
                 <p>
@@ -94,6 +103,7 @@ export default function DeadlineBox(){
                     <DeadlineEdit 
                         updateDeadline = {updateDeadline}
                         setEdit = {setEdit}
+                        editTitle = {editTitle}
                     />
 
                     <button onClick={hideEdit}>

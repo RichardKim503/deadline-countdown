@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import ErrorModal from './ErrorModal';
 
-export default function DeadlineEdit({updateDeadline, setEdit}){
+export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
 
+    const [title, setTitle] = useState();
     const [month, setMonth] = useState();
     const [day, setDay] = useState();
     const [year, setYear] = useState();
@@ -10,6 +11,10 @@ export default function DeadlineEdit({updateDeadline, setEdit}){
     const [minute, setMinute] = useState();
     const [errorMessage, setErrorMessage] = useState('');
     const [validDate, setValidDate] = useState(true);
+
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    }
 
     const handleMonthChange = (event) => {
         setMonth(event.target.value);
@@ -100,12 +105,21 @@ export default function DeadlineEdit({updateDeadline, setEdit}){
 
             updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
             setEdit(false);
+            editTitle(title);
         }
         
     }
 
     return(
         <div>
+            <div>
+                <input
+                    className='input_form_large'
+                    type='text'
+                    value={title}
+                    onChange={handleTitleChange}
+                />
+            </div>
             <div>
                 <input
                     className='input_form_small'
@@ -130,7 +144,7 @@ export default function DeadlineEdit({updateDeadline, setEdit}){
                 </p>
 
                 <input
-                    className='input_form_large'
+                    className='input_form_medium'
                     type='text'
                     value={year}
                     onChange={handleYearChange}

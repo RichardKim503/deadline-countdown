@@ -59,8 +59,13 @@
   font-size: 20px;
 }
 
-.input_form_large{
+.input_form_medium{
   width: 50px;
+  font-size: 20px;
+}
+
+.input_form_large{
+  width: 300px;
   font-size: 20px;
 }
 
