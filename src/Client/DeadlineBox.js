@@ -58,7 +58,35 @@ export default function DeadlineBox(){
         let currentMinutes = parseInt(totalMinutes % 60);
         let currentHours = parseInt(totalHours % 60);
 
-        return `${days} : ${currentHours} : ${currentMinutes} : ${currentSeconds}`;
+        if(currentSeconds < 10){
+            var displaySeconds = "0" + currentSeconds;
+        }
+        else{
+            var displaySeconds = currentSeconds;
+        }
+
+        if(currentMinutes < 10){
+            var displayMinutes = "0" + currentMinutes;
+        }
+        else{
+            var displayMinutes = currentMinutes;
+        }
+
+        if(currentHours < 10){
+            var displayHours = "0" + currentHours;
+        }
+        else{
+            var displayHours = currentHours;
+        }
+        
+        if(days < 10){
+            var displayDays = "0" + days;
+        }
+        else{
+            var displayDays = days;
+        }
+
+        return `${displayDays} : ${displayHours} : ${displayMinutes} : ${displaySeconds}`;
     }
 
     const showEdit = () => {
