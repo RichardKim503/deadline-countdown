@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ErrorModal from './ErrorModal';
 
-export default function DeadlineEdit({updateDeadline}){
+export default function DeadlineEdit({updateDeadline, setEdit}){
 
     const [month, setMonth] = useState();
     const [day, setDay] = useState();
@@ -99,6 +99,7 @@ export default function DeadlineEdit({updateDeadline}){
             // setDeadline(new Date(year, month - 1, day, hour, minute));
 
             updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+            setEdit(false);
         }
         
     }
@@ -107,7 +108,7 @@ export default function DeadlineEdit({updateDeadline}){
         <div>
             <div>
                 <input
-                    className='date_input_form'
+                    className='input_form_small'
                     type='text'
                     value={month}
                     onChange={handleMonthChange}
@@ -118,7 +119,7 @@ export default function DeadlineEdit({updateDeadline}){
                 </p>
                 
                 <input
-                    className='date_input_form'
+                    className='input_form_small'
                     type='text'
                     value={day}
                     onChange={handleDayChange}
@@ -129,7 +130,7 @@ export default function DeadlineEdit({updateDeadline}){
                 </p>
 
                 <input
-                    className='date_input_form'
+                    className='input_form_large'
                     type='text'
                     value={year}
                     onChange={handleYearChange}
@@ -138,7 +139,7 @@ export default function DeadlineEdit({updateDeadline}){
 
             <div>
                 <input
-                    className='date_input_form'
+                    className='input_form_small'
                     type='text'
                     value={hour}
                     onChange={handleHourChange}
@@ -149,7 +150,7 @@ export default function DeadlineEdit({updateDeadline}){
                 </p>
 
                 <input
-                    className='date_input_form'
+                    className='input_form_small'
                     type='text'
                     value={minute}
                     onChange={handleMinuteChange}

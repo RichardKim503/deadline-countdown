@@ -54,8 +54,13 @@
   height: 100%;
 }
 
-.date_input_form{
+.input_form_small{
   width: 25px;
+  font-size: 20px;
+}
+
+.input_form_large{
+  width: 50px;
   font-size: 20px;
 }
 
