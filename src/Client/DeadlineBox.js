@@ -113,6 +113,21 @@ export default function DeadlineBox(){
                     </button>
                 </div>
             )}
+
+            {edit && (
+                <div>
+                    <DeadlineEdit 
+                        updateDeadline = {updateDeadline}
+                        setEdit = {setEdit}
+                        editTitle = {editTitle}
+                    />
+
+                    <button onClick={hideEdit}>
+                        Cancel
+                    </button>
+                </div>
+                
+            )}
                 
 
                 
@@ -134,20 +149,7 @@ export default function DeadlineBox(){
 
             
 
-            {edit && (
-                <div>
-                    <DeadlineEdit 
-                        updateDeadline = {updateDeadline}
-                        setEdit = {setEdit}
-                        editTitle = {editTitle}
-                    />
 
-                    <button onClick={hideEdit}>
-                        Cancel
-                    </button>
-                </div>
-                
-            )}
             
         </div>
     )
