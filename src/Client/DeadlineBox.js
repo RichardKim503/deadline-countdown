@@ -103,9 +103,15 @@ export default function DeadlineBox(){
                     </p>
 
                     {deadline > Date.now().valueOf() && (
-                    <p>
-                        {formatTimer(deadline - Date.now().valueOf())}
-                    </p>
+                        <p>
+                            {formatTimer(deadline - Date.now().valueOf())}
+                        </p>
+                    )}
+
+                    {deadline < Date.now().valueOf() && (
+                        <p>
+                            Your time has expired.
+                        </p>
                     )}
 
                     <button onClick={showEdit}>
