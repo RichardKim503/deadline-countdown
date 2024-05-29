@@ -18,8 +18,10 @@ export default App;
 
 // todo
 /*
+error modal
 i should add pm and am
 max number and checking
+if the time is before today, add error
 title checking for 100 or less
 modal
 server side and use session

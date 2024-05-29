@@ -88,3 +88,11 @@
   display: inline;
   font-size: 25px;
 }
+
+.meridiem_selected{
+  background-color: grey;
+}
+
+.meridiem_not_selected{
+  background-color: white;
+}

@@ -9,6 +9,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     const [year, setYear] = useState();
     const [hour, setHour] = useState();
     const [minute, setMinute] = useState();
+    const [meridiem, setMerideim] = useState("AM");
     const [errorMessage, setErrorMessage] = useState('');
     const [validDate, setValidDate] = useState(true);
 
@@ -35,6 +36,15 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     const handleMinuteChange = (event) => {
         setMinute(event.target.value);
     }
+
+    const selectAM = () => {
+        setMerideim("AM");
+    }
+
+    const selectPM = () => {
+        setMerideim("PM");
+    }
+
 
     const applyChanges = () => {
 
@@ -86,8 +96,8 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             err += 'Enter a valid day.\n';
         }
 
-        if(hour < 0 || hour > 23){
-            err += 'Enter a valid hour between 0 and 23.\n';
+        if(hour < 0 || hour > 12){
+            err += 'Enter a valid hour between 0 and 12.\n';
         }
 
         if(minute < 0 || minute > 59){
@@ -103,7 +113,18 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             setValidDate(true);
             // setDeadline(new Date(year, month - 1, day, hour, minute));
 
-            updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+            if(meridiem === "AM"){
+                console.log(hour)
+                updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+            }
+            else if(meridiem === "PM"){
+                // hour += 12;
+                console.log(12 + hour)
+                console.log(Number(hour+12));
+                console.log(meridiem)
+                updateDeadline(new Date(year, month - 1, day, Number(hour) + 12, minute).toString());
+            }
+            
             setEdit(false);
             editTitle(title);
         }
@@ -169,6 +190,43 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     value={minute}
                     onChange={handleMinuteChange}
                 />
+
+                {meridiem === "AM" && (
+                    <div>
+                        <button
+                            className='meridiem_selected'
+                            onClick={selectAM}
+                        >
+                            AM
+                        </button>
+
+                        <button
+                            className='meridiem_not_selected'
+                            onClick={selectPM}
+                        >
+                            PM
+                        </button>
+                    </div>
+                )}
+
+                {meridiem === "PM" && (
+                    <div>
+                        <button 
+                            className='meridiem_not_selected'
+                            onClick={selectAM}
+                        >
+                            AM
+                        </button>
+
+                        <button
+                            className='meridiem_selected'
+                            onClick={selectPM}
+                        >
+                            PM
+                        </button>
+                    </div>
+                )}
+                
             </div>
             
 
