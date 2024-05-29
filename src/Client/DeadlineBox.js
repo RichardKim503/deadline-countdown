@@ -96,6 +96,8 @@ export default function DeadlineBox(){
     return(
         <div>
 
+            {deadline}
+
             {!edit && (
                 <div>
                     <p>

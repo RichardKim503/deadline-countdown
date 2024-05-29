@@ -156,11 +156,20 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
         // console.log();
         console.log(Date.now())
         console.log(new Date(year, month - 1, day, hour, minute).valueOf())
+        console.log(Date.now() - new Date(year, month - 1, day, hour, minute).valueOf());
         // console.log(Date.now() < new Date(year, month - 1, day, hour, minute).toString())
 
-        if(Date.now() > new Date(year, month - 1, day, hour, minute).valueOf()){
-            err += 'This date and time has already passed.\n';
+        if(meridiem === 'AM'){
+            if(Date.now() > new Date(year, month - 1, day, hour, minute).valueOf()){
+                err += 'This date and time has already passed.\n';
+            }
         }
+        else if(meridiem === 'PM'){
+            if(Date.now() > new Date(year, month - 1, day, Number(hour) + 12, minute).valueOf()){
+                err += 'This date and time has already passed.\n';
+            }
+        }
+        
 
         if(err.length !== 0){
             setValidDate(false);

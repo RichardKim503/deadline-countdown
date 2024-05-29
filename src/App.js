@@ -19,10 +19,11 @@ export default App;
 // todo
 /*
 DONEi should add pm and am
-max number and checking
+DONEmax number and checking
 DONEif the time is before today, add error
+bug with midnight and noon
 0 for single digits
-numeric values only
+DONEnumeric values only
 title checking for 100 or less
 
 error modal
