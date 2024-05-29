@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import DeadlineEdit from './DeadlineEdit';
-import { type } from '@testing-library/user-event/dist/type';
 import editIcon from "../Assets/editIcon.png";
 import deleteIcon from "../Assets/deleteIcon.png";
 
@@ -129,18 +128,12 @@ export default function DeadlineBox(){
             {(!edit && exist) && (
                 <div>
                     <p>
-                        {title}
-                        {/* {typeof title === undefined && (
+                        {title === "" && (
                             <p>
                                 Untitled Deadline
                             </p>
                         )}
-
-                        {title.length !== 0 && (
-                            <p>
-                                {title}
-                            </p>
-                        )} */}
+                        {title}
                     </p>
 
                     {deadline > Date.now().valueOf() && (

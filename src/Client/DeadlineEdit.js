@@ -3,7 +3,7 @@ import ErrorModal from './ErrorModal';
 
 export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
 
-    const [title, setTitle] = useState();
+    const [title, setTitle] = useState("");
     const [month, setMonth] = useState();
     const [day, setDay] = useState();
     const [year, setYear] = useState();
