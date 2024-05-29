@@ -4,7 +4,7 @@ import { type } from '@testing-library/user-event/dist/type';
 
 export default function DeadlineBox(){
 
-    const [title, editTitle] = useState();
+    const [title, editTitle] = useState("");
     const [deadline, setDeadline] = useState("empty");
     const [exist, doesExist] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -97,18 +97,32 @@ export default function DeadlineBox(){
     }
 
     return(
-        <div>
-
-            {!exist && (
-                <button onClick={showEdit}>
-                    Create New Deadline
+        <div className='deadline_container'>
+            
+            {(!exist && !edit) && (
+                <button 
+                    className='create_new_deadline_button'
+                    onClick={showEdit}
+                >
+                    Create New <br />
+                    Deadline
                 </button>
             )}
 
-            {!edit && (
+            {(!edit && exist) && (
                 <div>
                     <p>
-                        {title}
+                        {title.length === 0 && (
+                            <p>
+                                Untitled Deadline
+                            </p>
+                        )}
+
+                        {title.length !== 0 && (
+                            <p>
+                                {title}
+                            </p>
+                        )}
                     </p>
 
                     {deadline > Date.now().valueOf() && (
@@ -128,7 +142,6 @@ export default function DeadlineBox(){
                             Edit
                         </button>
                     )}
-                    
                 </div>
             )}
 

@@ -23,7 +23,13 @@ DONEmax number and checking
 DONEif the time is before today, add error
 bug with midnight and noon
 0 for single digits
+add original starting date
 DONEnumeric values only
+
+create new button
+delete button
+unamed deadline
+create 4x3 deadlines
 title checking for 100 or less
 
 error modal

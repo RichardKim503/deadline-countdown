@@ -11,36 +11,24 @@ export default function MainTable(){
                 <tbody>
                     <tr>
                         <td className='deadline_table_column'>
-                            <div className='deadline_container'>
-                                <DeadlineBox />
-                            </div>
+                            <DeadlineBox />
                         </td>
                         <td className='deadline_table_column'>
-                            <div className='deadline_container'>
-                                <DeadlineBox />
-                            </div>
+                            <DeadlineBox />
                         </td>
                         <td className='deadline_table_column'>
-                            <div className='deadline_container'>
-                                <DeadlineBox />
-                            </div>
+                            <DeadlineBox />
                         </td>
                     </tr>
                     <tr>
                         <td className='deadline_table_column'>
-                            <div className='deadline_container'>
-                                <DeadlineBox />
-                            </div>
+                            <DeadlineBox />
                         </td>
                         <td className='deadline_table_column'>
-                            <div className='deadline_container'>
-                                <DeadlineBox />
-                            </div>
+                            <DeadlineBox />
                         </td>
                         <td className='deadline_table_column'>
-                            <div className='deadline_container'>
-                                <DeadlineBox />
-                            </div>
+                            <DeadlineBox />
                         </td>
                     </tr>
                 </tbody>
