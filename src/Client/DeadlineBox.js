@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import DeadlineEdit from './DeadlineEdit';
 import { type } from '@testing-library/user-event/dist/type';
+import deleteIcon from "../Assets/deleteIcon.png";
+import editIcon from "../Assets/editIcon.png";
 
 export default function DeadlineBox(){
 
@@ -112,7 +114,8 @@ export default function DeadlineBox(){
             {(!edit && exist) && (
                 <div>
                     <p>
-                        {title.length === 0 && (
+                        {title}
+                        {/* {typeof title === undefined && (
                             <p>
                                 Untitled Deadline
                             </p>
@@ -122,7 +125,7 @@ export default function DeadlineBox(){
                             <p>
                                 {title}
                             </p>
-                        )}
+                        )} */}
                     </p>
 
                     {deadline > Date.now().valueOf() && (
@@ -138,9 +141,32 @@ export default function DeadlineBox(){
                     )}
 
                     {exist && (
-                        <button onClick={showEdit}>
-                            Edit
-                        </button>
+                        <div>
+                            <button 
+                                className='edit_delete_icon'
+                                onClick={showEdit}
+                            >
+                                <img 
+                                    src={deleteIcon}
+                                    alt='Delete'
+                                    height={32}
+                                    width={32}
+                                />
+                            </button>
+
+                            <button 
+                                className='edit_delete_icon'
+                                onClick={showEdit}
+                            >
+                                <img
+                                    src={editIcon}
+                                    alt='Edit'
+                                    height={32}
+                                    width={32}
+                                />
+                            </button>
+                        </div>
+                        
                     )}
                 </div>
             )}

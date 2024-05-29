@@ -125,3 +125,9 @@ button{
   margin-right: 25%;
   border: 2px solid;
 }
+
+.edit_delete_icon{
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}
