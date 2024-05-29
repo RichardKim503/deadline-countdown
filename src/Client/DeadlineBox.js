@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import DeadlineEdit from './DeadlineEdit';
+import { type } from '@testing-library/user-event/dist/type';
 
 export default function DeadlineBox(){
 
     const [title, editTitle] = useState();
-    const [deadline, setDeadline] = useState();
+    const [deadline, setDeadline] = useState("empty");
+    const [exist, doesExist] = useState(false);
     const [edit, setEdit] = useState(false);
 
     const [stateReset, resetter] = useState(0);
@@ -24,6 +26,7 @@ export default function DeadlineBox(){
         // console.log(new Date(newDeadline));
         // console.log(typeof newDeadline);
         setDeadline(new Date(newDeadline).valueOf());
+        doesExist(true);
     }
 
     // useEffect(() => {
@@ -96,7 +99,11 @@ export default function DeadlineBox(){
     return(
         <div>
 
-            {deadline}
+            {!exist && (
+                <button onClick={showEdit}>
+                    Create New Deadline
+                </button>
+            )}
 
             {!edit && (
                 <div>
@@ -116,9 +123,12 @@ export default function DeadlineBox(){
                         </p>
                     )}
 
-                    <button onClick={showEdit}>
-                        Edit
-                    </button>
+                    {exist && (
+                        <button onClick={showEdit}>
+                            Edit
+                        </button>
+                    )}
+                    
                 </div>
             )}
 

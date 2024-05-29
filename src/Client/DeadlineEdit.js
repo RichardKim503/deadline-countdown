@@ -154,9 +154,9 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
         }
 
         // console.log();
-        console.log(Date.now())
-        console.log(new Date(year, month - 1, day, hour, minute).valueOf())
-        console.log(Date.now() - new Date(year, month - 1, day, hour, minute).valueOf());
+        // console.log(Date.now())
+        // console.log(new Date(year, month - 1, day, hour, minute).valueOf())
+        // console.log(Date.now() - new Date(year, month - 1, day, hour, minute).valueOf());
         // console.log(Date.now() < new Date(year, month - 1, day, hour, minute).toString())
 
         if(meridiem === 'AM'){
