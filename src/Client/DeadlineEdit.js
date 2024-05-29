@@ -70,6 +70,22 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
         console.log(value)
     }
 
+    const filterNumber = (event) => {
+
+        if(
+            event.key === 'Backspace' ||
+            event.key === 'Tab' ||
+            event.key === 'ArrowLeft' ||
+            event.key === 'ArrowRight'){
+
+            return;
+        }      
+
+        if(!/[0-9]/.test(event.key)){
+            event.preventDefault();
+        }
+    }
+
     const selectAM = () => {
         setMerideim('AM');
     }
@@ -186,8 +202,9 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             <div>
                 <input
                     className='input_form_small'
-                    maxLength={2}
                     type='text'
+                    maxLength={2}
+                    onKeyDown={filterNumber}
                     value={month}
                     onChange={handleMonthChange}
                 />
@@ -200,6 +217,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     className='input_form_small'
                     type='text'
                     maxLength={2}
+                    onKeyDown={filterNumber}
                     value={day}
                     onChange={handleDayChange}
                 />
@@ -212,6 +230,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     className='input_form_medium'
                     type='text'
                     maxLength={4}
+                    onKeyDown={filterNumber}
                     value={year}
                     onChange={handleYearChange}
                 />
@@ -222,6 +241,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     className='input_form_small'
                     type='text'
                     maxLength={2}
+                    onKeyDown={filterNumber}
                     value={hour}
                     onChange={handleHourChange}
                 />
@@ -234,6 +254,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     className='input_form_small'
                     type='text'
                     maxLength={2}
+                    onKeyDown={filterNumber}
                     value={minute}
                     onChange={handleMinuteChange}
                 />
