@@ -37,10 +37,6 @@
   }
 }
 
-body{
-  font-family: 'Titillium Web Regular';
-}
-
 @font-face{
   font-family: 'Titillium Web Regular';
   src: url('./Assets/TitilliumWeb-Regular.ttf') format('truetype');
@@ -51,11 +47,18 @@ body{
   src: url('./Assets/Ubuntu-Regular.ttf') format('truetype');
 }
 
+body{
+  font-family: 'Titillium Web Regular';
+}
+
+button{
+  font-family: 'Titillium Web Regular';
+}
+
 #header{
   height: 70px;
   background-color: rgb(255, 100, 100);
   font-size: 50px;
-  font-family: 'Titillium Web Regular';
   text-align: center;
 }
 
@@ -103,20 +106,22 @@ body{
 }
 
 .meridiem_selected{
-  background-color: grey;
+  border: 2px solid;
+  background-image: linear-gradient(to bottom right, rgb(255, 150, 150), rgb(255, 0, 0));
 }
 
 .meridiem_not_selected{
+  border: 2px solid;
   background-color: white;
 }
 
 .create_new_deadline_button{
-  font-family: 'Titillium Web Regular';
   width: 50%;
   height: 50%;
   font-size: 25px;
   background-image: linear-gradient(to bottom right, rgb(255, 150, 150), rgb(255, 0, 0));
-  margin-top: 15%;
+  margin-top: 10%;
   margin-left: 25%;
   margin-right: 25%;
+  border: 2px solid;
 }
