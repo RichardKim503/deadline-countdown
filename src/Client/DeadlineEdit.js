@@ -9,7 +9,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     const [year, setYear] = useState();
     const [hour, setHour] = useState();
     const [minute, setMinute] = useState();
-    const [meridiem, setMerideim] = useState("AM");
+    const [meridiem, setMerideim] = useState('AM');
     const [errorMessage, setErrorMessage] = useState('');
     const [validDate, setValidDate] = useState(true);
 
@@ -38,11 +38,11 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     }
 
     const selectAM = () => {
-        setMerideim("AM");
+        setMerideim('AM');
     }
 
     const selectPM = () => {
-        setMerideim("PM");
+        setMerideim('PM');
     }
 
 
@@ -113,11 +113,11 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             setValidDate(true);
             // setDeadline(new Date(year, month - 1, day, hour, minute));
 
-            if(meridiem === "AM"){
+            if(meridiem === 'AM'){
                 console.log(hour)
                 updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
             }
-            else if(meridiem === "PM"){
+            else if(meridiem === 'PM'){
                 // hour += 12;
                 console.log(12 + hour)
                 console.log(Number(hour+12));
@@ -144,6 +144,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             <div>
                 <input
                     className='input_form_small'
+                    maxLength={2}
                     type='text'
                     value={month}
                     onChange={handleMonthChange}
@@ -156,6 +157,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 <input
                     className='input_form_small'
                     type='text'
+                    maxLength={2}
                     value={day}
                     onChange={handleDayChange}
                 />
@@ -167,6 +169,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 <input
                     className='input_form_medium'
                     type='text'
+                    maxLength={4}
                     value={year}
                     onChange={handleYearChange}
                 />
@@ -176,6 +179,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 <input
                     className='input_form_small'
                     type='text'
+                    maxLength={2}
                     value={hour}
                     onChange={handleHourChange}
                 />
@@ -187,11 +191,12 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 <input
                     className='input_form_small'
                     type='text'
+                    maxLength={2}
                     value={minute}
                     onChange={handleMinuteChange}
                 />
 
-                {meridiem === "AM" && (
+                {meridiem === 'AM' && (
                     <div>
                         <button
                             className='meridiem_selected'
@@ -209,7 +214,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     </div>
                 )}
 
-                {meridiem === "PM" && (
+                {meridiem === 'PM' && (
                     <div>
                         <button 
                             className='meridiem_not_selected'
