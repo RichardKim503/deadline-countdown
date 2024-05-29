@@ -32,7 +32,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     const handleHourChange = (event) => {
         
 
-        addLeadingZero(event.target.value)
+        // addLeadingZero(event.target.value)
         // let value = event.target.value;
 
         // if (value.length === 1 && value !== '0') {
@@ -135,6 +135,15 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
 
         if(minute < 0 || minute > 59){
             err += 'Enter a valid minute between 0 and 59.\n';
+        }
+
+        // console.log();
+        console.log(Date.now())
+        console.log(new Date(year, month - 1, day, hour, minute).valueOf())
+        // console.log(Date.now() < new Date(year, month - 1, day, hour, minute).toString())
+
+        if(Date.now() > new Date(year, month - 1, day, hour, minute).valueOf()){
+            err += 'This date and time has already passed.\n';
         }
 
         if(err.length !== 0){
