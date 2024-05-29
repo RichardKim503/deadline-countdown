@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import DeadlineEdit from './DeadlineEdit';
 import { type } from '@testing-library/user-event/dist/type';
-import deleteIcon from "../Assets/deleteIcon.png";
 import editIcon from "../Assets/editIcon.png";
+import deleteIcon from "../Assets/deleteIcon.png";
 
 export default function DeadlineBox(){
 
@@ -10,6 +10,7 @@ export default function DeadlineBox(){
     const [deadline, setDeadline] = useState("empty");
     const [exist, doesExist] = useState(false);
     const [edit, setEdit] = useState(false);
+    const [displayDelete, setDisplayDelete] = useState(false);
 
     const [stateReset, resetter] = useState(0);
 
@@ -98,6 +99,20 @@ export default function DeadlineBox(){
         setEdit(false);
     }
 
+    const showDelete = () => {
+        setDisplayDelete(true);
+    }
+
+    const hideDelete = () => {
+        setDisplayDelete(false);
+    }
+
+    const confirmDelete = () => {
+        setDisplayDelete(false);
+        doesExist(false);
+    }
+
+
     return(
         <div className='deadline_container'>
             
@@ -146,9 +161,9 @@ export default function DeadlineBox(){
                                 className='edit_delete_icon'
                                 onClick={showEdit}
                             >
-                                <img 
-                                    src={deleteIcon}
-                                    alt='Delete'
+                                <img
+                                    src={editIcon}
+                                    alt='Edit'
                                     height={32}
                                     width={32}
                                 />
@@ -156,11 +171,11 @@ export default function DeadlineBox(){
 
                             <button 
                                 className='edit_delete_icon'
-                                onClick={showEdit}
+                                onClick={showDelete}
                             >
-                                <img
-                                    src={editIcon}
-                                    alt='Edit'
+                                <img 
+                                    src={deleteIcon}
+                                    alt='Delete'
                                     height={32}
                                     width={32}
                                 />
@@ -186,6 +201,23 @@ export default function DeadlineBox(){
                 
             )}
                 
+            {displayDelete && (
+                <div>
+                    <p>
+                        Are you sure you want to delete?
+                    </p>
+
+                    <button onClick={confirmDelete}>
+                        Yes
+                    </button>
+
+                    <button
+                        onClick={hideDelete}
+                    >
+                        No
+                    </button>
+                </div>
+            )}
 
                 
                 
