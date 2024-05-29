@@ -30,11 +30,44 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     }
 
     const handleHourChange = (event) => {
+        
+
+        addLeadingZero(event.target.value)
+        // let value = event.target.value;
+
+        // if (value.length === 1 && value !== '0') {
+        //     value = '0' + value;
+        //     console.log("here1")
+            
+        // }
+
+        // if (value.length === 2 && value.startsWith('0')) {
+        //     value = value.slice(1);
+        //     console.log("here2")
+        // }
+
         setHour(event.target.value);
     }
 
     const handleMinuteChange = (event) => {
         setMinute(event.target.value);
+    }
+
+    const addLeadingZero = (value) => {
+
+        console.log("updated")
+        console.log(value)
+
+        if(value.length === 1 && value !== '0'){
+            value = '0' + value;
+            console.log("here1")
+        }
+
+        // else if(value.length === 2 && value.startsWith('0')){
+        //     value = value.slice(1)
+        //     console.log("here2")
+        // }
+        console.log(value)
     }
 
     const selectAM = () => {

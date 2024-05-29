@@ -22,6 +22,8 @@ error modal
 DONEi should add pm and am
 max number and checking
 if the time is before today, add error
+0 for single digits
+numeric values only
 title checking for 100 or less
 modal
 server side and use session
