@@ -211,12 +211,8 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             </div>
 
             <div className='date_input_group'>
-                <p
-                    style={{
-                        display: 'inline-block',
-                        marginRight: '5px'
-                    }}    
-                >
+                
+                <p className='date_time_input_text'>
                     Set Date:
                 </p>
 
@@ -277,28 +273,46 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 </div>
             </div>
 
-            <div>
-                <input
-                    className='input_form_small'
-                    type='text'
-                    maxLength={2}
-                    onKeyDown={filterNumber}
-                    value={hour}
-                    onChange={handleHourChange}
-                />
-                
+            <div className='date_input_group'>
+                <p className='date_time_input_text'>
+                    Set Time:
+                </p>
+
+                <div className='input_form_group'>
+                    <label for='hour'>
+                        Hour
+                    </label>
+
+                    <input
+                        id='hour'
+                        className='input_form_small'
+                        type='text'
+                        maxLength={2}
+                        onKeyDown={filterNumber}
+                        value={hour}
+                        onChange={handleHourChange}
+                    />
+                </div>
+
                 <p className='date_slash_text'>
                     &nbsp;:&nbsp;
                 </p>
 
-                <input
-                    className='input_form_small'
-                    type='text'
-                    maxLength={2}
-                    onKeyDown={filterNumber}
-                    value={minute}
-                    onChange={handleMinuteChange}
-                />
+                <div className='input_form_group'>
+                    <label for='minute'>
+                        Minute
+                    </label>
+
+                    <input
+                        id='minute'
+                        className='input_form_small'
+                        type='text'
+                        maxLength={2}
+                        onKeyDown={filterNumber}
+                        value={minute}
+                        onChange={handleMinuteChange}
+                    />
+                </div>
 
                 {meridiem === 'AM' && (
                     <div>
@@ -335,8 +349,23 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                         </button>
                     </div>
                 )}
-                
+
+                    <button onClick={applyChanges}>
+                        Apply
+                    </button>
             </div>
+
+            
+                    
+                
+                
+
+                
+
+
+                
+            
+
             
 
 
@@ -352,11 +381,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 />
             )}
 
-            <button
-                onClick={applyChanges}
-            >
-                Apply
-            </button>
+            
         </div>
     )
 }

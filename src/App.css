@@ -85,11 +85,18 @@ button{
   margin: auto;
 }
 
+.date_time_input_text{
+  display: 'inline-block';
+  margin-right: 10px;
+}
+
 .date_input_group{
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  float: left;
 }
+
 .input_form_group{
   display: flex;
   flex-direction: column;
