@@ -85,6 +85,19 @@ button{
   margin: auto;
 }
 
+.date_input_group{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.input_form_group{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0px;
+  font-size: 12px;
+}
+
 .input_form_small{
   width: 25px;
   font-size: 20px;
@@ -126,8 +139,21 @@ button{
   border: 2px solid;
 }
 
-.edit_delete_icon{
+.edit_icon{
   background-color: transparent;
   border: transparent;
   cursor: pointer;
+  position: relative;
+
+}
+
+.delete_icon{
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.edit_delete_icon_container{
+  text-align: center;
 }

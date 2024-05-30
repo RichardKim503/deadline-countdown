@@ -204,45 +204,77 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 <input
                     className='input_form_large'
                     type='text'
+                    placeholder='Enter a Title'
                     value={title}
                     onChange={handleTitleChange}
                 />
             </div>
-            <div>
-                <input
-                    className='input_form_small'
-                    type='text'
-                    maxLength={2}
-                    onKeyDown={filterNumber}
-                    value={month}
-                    onChange={handleMonthChange}
-                />
+
+            <div className='date_input_group'>
+                <p
+                    style={{
+                        display: 'inline-block',
+                        marginRight: '5px'
+                    }}    
+                >
+                    Set Date:
+                </p>
+
+                <div className='input_form_group'>
+                    <label for='month'>
+                        Month
+                    </label>
+
+                    <input
+                        id='month'
+                        className='input_form_small'
+                        type='text'
+                        maxLength={2}
+                        onKeyDown={filterNumber}
+                        value={month}
+                        onChange={handleMonthChange}
+                    />
+                </div>
                 
                 <p className='date_slash_text'>
                     &nbsp;/&nbsp;
                 </p>
                 
-                <input
-                    className='input_form_small'
-                    type='text'
-                    maxLength={2}
-                    onKeyDown={filterNumber}
-                    value={day}
-                    onChange={handleDayChange}
-                />
+                <div className='input_form_group'>
+                    <label for='day'>
+                        Day
+                    </label>
 
+                    <input
+                        id='day'
+                        className='input_form_small'
+                        type='text'
+                        maxLength={2}
+                        onKeyDown={filterNumber}
+                        value={day}
+                        onChange={handleDayChange}
+                    />
+                </div>
+                
                 <p className='date_slash_text'>
                     &nbsp;/&nbsp;
                 </p>
 
-                <input
-                    className='input_form_medium'
-                    type='text'
-                    maxLength={4}
-                    onKeyDown={filterNumber}
-                    value={year}
-                    onChange={handleYearChange}
-                />
+                <div className='input_form_group'>
+                    <label for='year'>
+                        Year
+                    </label>
+
+                    <input
+                        id='year'
+                        className='input_form_medium'
+                        type='text'
+                        maxLength={4}
+                        onKeyDown={filterNumber}
+                        value={year}
+                        onChange={handleYearChange}
+                    />
+                </div>
             </div>
 
             <div>

@@ -127,6 +127,34 @@ export default function DeadlineBox(){
 
             {(!edit && exist) && (
                 <div>
+                    {exist && (
+                        <div className='edit_delete_icon_container'>
+                            <button 
+                                className='edit_icon'
+                                onClick={showEdit}
+                            >
+                                <img
+                                    src={editIcon}
+                                    alt='Edit'
+                                    height={32}
+                                    width={32}
+                                />
+                            </button>
+
+                            <button 
+                                className='delete_icon'
+                                onClick={showDelete}
+                            >
+                                <img 
+                                    src={deleteIcon}
+                                    alt='Delete'
+                                    height={32}
+                                    width={32}
+                                />
+                            </button>
+                        </div>
+                    )}
+
                     <p>
                         {title === "" && (
                             <p>
@@ -146,35 +174,6 @@ export default function DeadlineBox(){
                         <p>
                             Your time has expired.
                         </p>
-                    )}
-
-                    {exist && (
-                        <div>
-                            <button 
-                                className='edit_delete_icon'
-                                onClick={showEdit}
-                            >
-                                <img
-                                    src={editIcon}
-                                    alt='Edit'
-                                    height={32}
-                                    width={32}
-                                />
-                            </button>
-
-                            <button 
-                                className='edit_delete_icon'
-                                onClick={showDelete}
-                            >
-                                <img 
-                                    src={deleteIcon}
-                                    alt='Delete'
-                                    height={32}
-                                    width={32}
-                                />
-                            </button>
-                        </div>
-                        
                     )}
                 </div>
             )}
