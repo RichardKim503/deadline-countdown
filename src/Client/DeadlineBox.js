@@ -157,15 +157,18 @@ export default function DeadlineBox(){
 
                     <p>
                         {title === "" && (
-                            <p>
+                            <p className='main_title'>
                                 Untitled Deadline
                             </p>
                         )}
-                        {title}
+                        <p className='main_title'>
+                            {title}
+                        </p>
+                        
                     </p>
 
                     {deadline > Date.now().valueOf() && (
-                        <p>
+                        <p className='main_timer'>
                             {formatTimer(deadline - Date.now().valueOf())}
                         </p>
                     )}

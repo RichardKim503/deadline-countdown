@@ -314,43 +314,50 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                     />
                 </div>
 
-                {meridiem === 'AM' && (
-                    <div>
-                        <button
-                            className='meridiem_selected'
-                            onClick={selectAM}
-                        >
-                            AM
-                        </button>
+                <div >
+                    {meridiem === 'AM' && (
+                        <div className='meridiem_container'>
+                            <button
+                                className='meridiem_selected'
+                                onClick={selectAM}
+                            >
+                                AM
+                            </button>
 
-                        <button
-                            className='meridiem_not_selected'
-                            onClick={selectPM}
-                        >
-                            PM
-                        </button>
-                    </div>
-                )}
+                            <button
+                                className='meridiem_not_selected'
+                                onClick={selectPM}
+                            >
+                                PM
+                            </button>
+                        </div>
+                    )}
 
-                {meridiem === 'PM' && (
-                    <div>
-                        <button 
-                            className='meridiem_not_selected'
-                            onClick={selectAM}
-                        >
-                            AM
-                        </button>
+                    {meridiem === 'PM' && (
+                        <div className='meridiem_container'>
+                            <button 
+                                className='meridiem_not_selected'
+                                onClick={selectAM}
+                            >
+                                AM
+                            </button>
 
-                        <button
-                            className='meridiem_selected'
-                            onClick={selectPM}
-                        >
-                            PM
-                        </button>
-                    </div>
-                )}
+                            <button
+                                className='meridiem_selected'
+                                onClick={selectPM}
+                            >
+                                PM
+                            </button>
+                        </div>
+                    )}
+                </div>
+                
 
-                    <button onClick={applyChanges}>
+                    
+            </div>
+            
+            <div className='test'>
+                <button onClick={applyChanges}>
                         Apply
                     </button>
             </div>
