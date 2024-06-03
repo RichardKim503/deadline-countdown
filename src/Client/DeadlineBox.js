@@ -57,7 +57,7 @@ export default function DeadlineBox(){
 
         let currentSeconds = parseInt(totalSeconds % 60);
         let currentMinutes = parseInt(totalMinutes % 60);
-        let currentHours = parseInt(totalHours % 60);
+        let currentHours = parseInt(totalHours % 24);
 
         if(currentSeconds < 10){
             var displaySeconds = "0" + currentSeconds;

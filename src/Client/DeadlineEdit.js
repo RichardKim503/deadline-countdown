@@ -181,7 +181,6 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             // setDeadline(new Date(year, month - 1, day, hour, minute));
 
             if(meridiem === 'AM'){
-                console.log(hour)
                 updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
             }
             else if(meridiem === 'PM'){
