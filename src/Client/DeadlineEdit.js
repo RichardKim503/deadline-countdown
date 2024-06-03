@@ -7,7 +7,7 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
     const [month, setMonth] = useState();
     const [day, setDay] = useState();
     const [year, setYear] = useState();
-    const [hour, setHour] = useState();
+    const [hour, setHour] = useState("");
     const [minute, setMinute] = useState();
     const [meridiem, setMerideim] = useState('AM');
     const [errorMessage, setErrorMessage] = useState('');
@@ -149,6 +149,14 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             err += 'Enter a valid hour between 0 and 12.\n';
         }
 
+        // console.log("hour: " + hour)
+        // if(hour === "12"){
+        //     console.log("here");
+        //     console.log(typeof hour)
+        //     setHour("0");
+        //     console.log(hour);
+        // }
+
         if(minute < 0 || minute > 59){
             err += 'Enter a valid minute between 0 and 59.\n';
         }
@@ -180,15 +188,34 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             setValidDate(true);
             // setDeadline(new Date(year, month - 1, day, hour, minute));
 
+
+                
+
             if(meridiem === 'AM'){
-                updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+                if(hour === '12'){
+                    updateDeadline(new Date(year, month - 1, day, '0', minute).toString());
+                }
+                else{
+                    updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+                }
+                
             }
             else if(meridiem === 'PM'){
+
+                if(hour === '12'){
+                    updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+                }
+                else{
+                    updateDeadline(new Date(year, month - 1, day, Number(hour) + 12, minute).toString());
+                }
+                
+                    
+
+                
                 // hour += 12;
-                console.log(12 + hour)
-                console.log(Number(hour+12));
-                console.log(meridiem)
-                updateDeadline(new Date(year, month - 1, day, Number(hour) + 12, minute).toString());
+                // console.log(12 + hour)
+                // console.log(Number(hour+12));
+                // console.log(meridiem)
             }
             
             setEdit(false);

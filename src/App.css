@@ -156,9 +156,7 @@ button{
   height: 50%;
   font-size: 25px;
   background-image: linear-gradient(to bottom right, rgb(255, 150, 150), rgb(255, 0, 0));
-  margin-top: 10%;
-  margin-left: 25%;
-  margin-right: 25%;
+  position: relative;
   border: 2px solid;
 }
 

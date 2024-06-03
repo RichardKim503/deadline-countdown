@@ -174,8 +174,8 @@ export default function DeadlineBox(){
                     )}
 
                     {deadline < Date.now().valueOf() && (
-                        <p>
-                            Your time has expired.
+                        <p className='main_timer'>
+                            Your time has expired
                         </p>
                     )}
                 </div>
