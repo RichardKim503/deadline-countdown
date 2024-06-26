@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ErrorModal from './ErrorModal';
+import axios from 'axios';
 
 export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
 
@@ -189,24 +190,24 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
             // setDeadline(new Date(year, month - 1, day, hour, minute));
 
 
-                
+            let deadlineString;
 
             if(meridiem === 'AM'){
                 if(hour === '12'){
-                    updateDeadline(new Date(year, month - 1, day, '0', minute).toString());
+                    deadlineString = new Date(year, month - 1, day, '0', minute).toString();
                 }
                 else{
-                    updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+                    deadlineString = new Date(year, month - 1, day, hour, minute).toString();
                 }
                 
             }
             else if(meridiem === 'PM'){
 
                 if(hour === '12'){
-                    updateDeadline(new Date(year, month - 1, day, hour, minute).toString());
+                    deadlineString = new Date(year, month - 1, day, hour, minute).toString();
                 }
                 else{
-                    updateDeadline(new Date(year, month - 1, day, Number(hour) + 12, minute).toString());
+                    deadlineString = new Date(year, month - 1, day, Number(hour) + 12, minute).toString();
                 }
                 
                     
@@ -217,9 +218,28 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 // console.log(Number(hour+12));
                 // console.log(meridiem)
             }
+
+            updateDeadline(deadlineString);
+            // console.log(deadlineString)
+            // console.log(typeof deadlineString);;
+
+            // console.log(new Date().toString());
+            // console.log(typeof new Date().toString());
+
+            console.log(new Date().toString().valueOf())
             
             setEdit(false);
             editTitle(title);
+
+            let deadlineObject = {
+                title: title,
+                startDate: new Date().toString(),
+                endDate: deadlineString
+            }
+
+
+
+            axios.post("http://localhost:8000/newdeadline", deadlineObject);
         }
         
     }

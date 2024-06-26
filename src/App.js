@@ -3,6 +3,9 @@ import './App.css';
 import DeadlineBox from './Client/DeadlineBox';
 import MainTable from './Client/MainTable';
 import Header from './Client/Header';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
@@ -22,8 +25,8 @@ DONEi should add pm and am
 DONEmax number and checking
 DONEif the time is before today, add error
 DONEnumeric values only
+DONEbug with midnight and noon
 
-bug with midnight and noon
 button to show original starting dates
 add original starting date
 when editing, add original starting date to input form
