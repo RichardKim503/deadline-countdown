@@ -2,11 +2,14 @@ import React from 'react';
 import DeadlineBox from './DeadlineBox';
 import NavBar from './NavBar';
 
-export default function MainTable(){
-
+export default function MainTable({toggleModal}){
+    
     return(
         <div>
-            <NavBar />
+            <NavBar 
+                toggleModal = {toggleModal}
+            />
+
             <table id='deadline_main_table'>
                 <tbody>
                     <tr>
