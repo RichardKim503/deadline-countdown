@@ -194,3 +194,8 @@ button{
   padding: 0px;
   margin: 0px;
 }
+
+.account_input_form{
+  width: 400px;
+  font-size: 16x;
+}

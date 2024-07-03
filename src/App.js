@@ -5,6 +5,7 @@ import './modal.css';
 import DeadlineBox from './Client/DeadlineBox';
 import MainTable from './Client/MainTable';
 import Header from './Client/Header';
+import AccountModal from './Client/AccountModal';
 import axios from 'axios';
 
 
@@ -25,7 +26,7 @@ function App() {
       <MainTable 
         toggleModal={toggleModal}
       />
-      {/* <DeadlineBox /> */}
+
       {modal && (
         <div className="modal">
           <div 
@@ -33,7 +34,7 @@ function App() {
             onClick={toggleModal}
           />
           <div className="modal-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi officia eum repellendus quaerat, saepe quae commodi sed nam cum odit odio earum, quisquam quam molestiae optio explicabo ipsa! Nisi sed esse reprehenderit eius quos, error ipsam, corporis quasi optio voluptatem ratione. Doloremque esse odio rerum aperiam illo sunt quo aliquid.
+            <AccountModal />
           </div>
           <button 
             className="close-modal"
