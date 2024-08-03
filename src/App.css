@@ -199,3 +199,18 @@ button{
   width: 400px;
   font-size: 16x;
 }
+
+.account_hyperlink{
+  color: blue;
+  text-decoration: underline;
+}
+
+.account_error{
+  color: red;
+}
+
+.account_caption{
+  color: rgb(100, 100, 100);
+
+}
+

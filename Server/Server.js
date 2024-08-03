@@ -37,7 +37,9 @@ client.query(`Select * from account`, (err, res) => {
         console.log(err.message)
     }
     client.end;
-})
+});
+
+
 
 
 /*
@@ -84,3 +86,6 @@ app.post("/newdeadline", async (req, res) => {
     console.log(req.body)
 });
 
+app.post('/createaccount', async(req, res) => {
+    console.log(req.body);
+});

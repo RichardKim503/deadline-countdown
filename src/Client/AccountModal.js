@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 
 function AccountModal() {
 
-    const [page, setPage] = useState("accountcreated");
+    const [page, setPage] = useState("login");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const [usernameError, setUsernameError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
 
     const handleUsernameEvent = (event) => {
         setUsername(event.target.value);
@@ -22,22 +25,33 @@ function AccountModal() {
 
     const createAccount = () => {
 
-        if(password.length < 8){
-            console.log('too short')
+        if(username.length < 8){
+            setUsernameError("Your username is too short")
+        }
+        else if(username.length > 32){
+            setUsernameError("Your username is too long")
+        }
+        else{
+            setUsernameError("");
         }
 
         const alphabetRegex = /[a-zA-Z]/;
         const numberRegex = /\d/;
 
-        if(!alphabetRegex.test(password)){
-            console.log('must have at least one letter')
+        if(password.length < 8){
+            setPasswordError("Your password is too short")
         }
-
-        if(!numberRegex.test(password)){
-            console.log('must have at least one number')
+        else{
+            if(!alphabetRegex.test(password)){
+                setPasswordError("Your password must have at least one alphabetical letter")
+            }
+            else if(!numberRegex.test(password)){
+                setPasswordError("Your password must have at least one number")
+            }
+            else{
+                setPasswordError("");
+            }
         }
-
-        
     }
 
 
@@ -71,10 +85,11 @@ function AccountModal() {
                         <button
                             onClick={loginAccount}
                         >
-                            login
+                            Log In
                         </button>
                         <p 
                             onClick={() => setPage("signin")}
+                            className='account_hyperlink'
                         >
                             Don't have an account? Create one
                         </p>
@@ -93,7 +108,10 @@ function AccountModal() {
                             value={username}
                             onChange={handleUsernameEvent}
                         />
-                        <p>
+                        <p className='account_error'>
+                            {usernameError}
+                        </p>
+                        <p className='account_caption'>
                             Must be between 8 and 32 characters.
                         </p>
                     </div>
@@ -107,7 +125,10 @@ function AccountModal() {
                             value={password}
                             onChange={handlePasswordEvent}
                         />
-                        <p>
+                        <p className='account_error'>
+                            {passwordError}
+                        </p>
+                        <p className='account_caption'>
                             Must contain 8+ characters, at least 1 letter and 1 number.
                         </p>
                     </div>
@@ -116,11 +137,12 @@ function AccountModal() {
                         <button
                             onClick={createAccount}
                         >
-                            here
+                            Sign Up
                         </button>
 
                         <p
                             onClick={() => setPage("login")}
+                            className='account_hyperlink'
                         >  
                             Already have an account? Log in
                         </p>
