@@ -15,15 +15,65 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const dotenv = require('dotenv');
+dotenv.config();
 
+const {Client} = require('pg');
+const client = new Client({
+    host: 'localhost',
+    user: 'postgres',
+    port: 5432,
+    password: process.env.PASSWORD,
+    database: 'deadline-countdown-db'
+});
+
+client.connect();
+
+client.query(`Select * from account`, (err, res) => {
+    if(!err){
+        console.log(res.rows);
+    }
+    else{
+        console.log(err.message)
+    }
+    client.end;
+})
+
+
+/*
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'Deadlines'
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: '123',
+    database: 'UsersDatabase'
 }).promise();
+
+const result = pool.query('SELECT * FROM Users');
+console.log(result);
+*/
+
+/*
+var myConnection = mysql.createConnection({
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: 'user_db'
+});
+
+myConnection.connect(function(err) {
+    myConnection.query(sql, function(err, result){})
+})
+
+myConnection.connect(function(err) {
+
+    console.log("conneted to db")
+    myConnection.query("CREATE DATABASE user_db", function (err, result) {
+        console.log("created")
+    })
+});
+*/
 
 
 app.listen(port, ()=>{
