@@ -29,15 +29,15 @@ const client = new Client({
 
 client.connect();
 
-client.query(`Select * from account`, (err, res) => {
-    if(!err){
-        console.log(res.rows);
-    }
-    else{
-        console.log(err.message)
-    }
-    client.end;
-});
+// client.query(`Select * from accounts`, (err, res) => {
+//     if(!err){
+//         console.log(res.rows);
+//     }
+//     else{
+//         console.log(err.message)
+//     }
+//     client.end;
+// });
 
 
 
@@ -87,5 +87,40 @@ app.post("/newdeadline", async (req, res) => {
 });
 
 app.post('/createaccount', async(req, res) => {
-    console.log(req.body);
+
+    /*
+    let username_lowercase = req.body.username.toLowerCase();
+    let isUsernameAvailable;
+
+    client.query(`Select * FROM accounts WHERE username = '${username_lowercase}'`, (err, res) => {
+        
+        // If the username is already taken
+        if(res.rows.length === 1){
+            isUsernameAvailable = false;
+        }
+        // If the username is available
+        else{
+            isUsernameAvailable = true;
+        }
+    });
+
+    if(isUsernameAvailable === false){
+        res.send("Username already taken");
+        console.log("here1")
+    }
+    else{
+        res.send("Username is available");
+        console.log("here2")
+    }
+    */
+
+    let result = await client.query(`Select * FROM accounts WHERE username = '${req.body.username.toLowerCase()}'`);
+
+    if(result.rows.length === 1){
+        res.send("Username already taken");
+    }
+    else{
+        res.send("Username is available");
+    }
 });
+

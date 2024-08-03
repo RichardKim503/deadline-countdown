@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 function AccountModal() {
@@ -26,10 +27,10 @@ function AccountModal() {
     const createAccount = () => {
 
         if(username.length < 8){
-            setUsernameError("Your username is too short")
+            setUsernameError("Your username is too short");
         }
         else if(username.length > 32){
-            setUsernameError("Your username is too long")
+            setUsernameError("Your username is too long");
         }
         else{
             setUsernameError("");
@@ -39,19 +40,34 @@ function AccountModal() {
         const numberRegex = /\d/;
 
         if(password.length < 8){
-            setPasswordError("Your password is too short")
+            setPasswordError("Your password is too short");
         }
         else{
             if(!alphabetRegex.test(password)){
-                setPasswordError("Your password must have at least one alphabetical letter")
+                setPasswordError("Your password must have at least one alphabetical letter");
             }
             else if(!numberRegex.test(password)){
-                setPasswordError("Your password must have at least one number")
+                setPasswordError("Your password must have at least one number");
             }
             else{
                 setPasswordError("");
             }
         }
+
+        let createAccountObject = {
+            username: username,
+            password: password
+        }
+
+        axios.post("http://localhost:8000/createaccount", createAccountObject)
+        .then(res => {
+            if(res.data === "Username already taken"){
+                setUsernameError("Your username is already taken")
+            }
+            else if(res.data === "Username is available"){
+                setPage("accountcreated");
+            }
+        });
     }
 
 
