@@ -121,6 +121,11 @@ app.post('/createaccount', async(req, res) => {
     }
     else{
         res.send("Username is available");
+
+        client.query(`
+            INSERT INTO accounts(username, password)
+            VALUES('${req.body.username}','${req.body.password}');
+        `);
     }
 });
 
