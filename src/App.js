@@ -85,4 +85,8 @@ database schema:
 exist?
 title
 time in milliseconds
+
+sql injection attack protection
+clean up vulerabilities
+encrypt passwords
 */

@@ -15,6 +15,8 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -122,9 +124,12 @@ app.post('/createaccount', async(req, res) => {
     else{
         res.send("Username is available");
 
+        const salt = await bcrypt.genSalt(saltRounds);
+        const passwordHash = await bcrypt.hash(req.body.password, salt);
+
         client.query(`
             INSERT INTO accounts(username, password)
-            VALUES('${req.body.username}','${req.body.password}');
+            VALUES('${req.body.username}','${passwordHash}');
         `);
     }
 });
