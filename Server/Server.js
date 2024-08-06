@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const cors = require('cors');
 
 const app = express();
@@ -137,8 +138,43 @@ app.post('/createaccount', async(req, res) => {
 
 app.use(
     session({
+        store: new pgSession({
+            pool: client
+        }),
         secret: 'temp',
         cookie: {maxAge: 30000},
-        saveUninitialized: false
+        saveUninitialized: false,
+        resave: false
     })
 );
+
+app.post('/login', async(req, res) => {
+    console.log(req.body);
+
+    let result = await client.query(`Select * FROM accounts WHERE username = '${req.body.username.toLowerCase()}'`);
+    let user = result.rows;
+
+    if(user.length === 0){
+        res.send('Account does not exist');
+    }
+    else if (user.length === 1){
+
+        let passwordMatch = await bcrypt.compare(req.body.password, user[0].password);
+
+        if(!passwordMatch){
+            res.send('Wrong password')
+        }
+        else{
+            req.session.userId = user[0].id;
+            req.session.username = user[0].username;
+            res.send(req.session);
+        }
+    }
+    
+});
+
+app.post('/sessionexists', async(req, res) => {
+    if(req.session.user){
+
+    }
+})

@@ -7,6 +7,9 @@ function AccountModal() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const [loginUsernameError, setLoginUsernameError] = useState("");
+    const [loginPasswordError, setLoginPasswordError] = useState("");
+
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
@@ -22,7 +25,34 @@ function AccountModal() {
 
     const loginAccount = () => {
 
-        let loginAccountObject 
+        let loginAccountObject = {
+            username: username,
+            password: password
+        }
+
+        axios.post('http://localhost:8000/login', loginAccountObject)
+        .then(res => {
+
+            let validLoginUsername = true;
+            let validLoginPassword = true;
+
+            setLoginUsernameError('');
+            setLoginPasswordError('');
+
+            if(res.data === 'Account does not exist'){
+                setLoginUsernameError('This username is not registered');
+                validLoginUsername = false;
+            }
+
+            if(res.data === 'Wrong password'){
+                setLoginPasswordError('Password is incorrect');
+                validLoginPassword = false;
+            }
+
+            if(validLoginUsername && validLoginPassword){
+                setPage("loginsuccessful");
+            }
+        });
     }
 
     const createAccount = () => {
@@ -97,6 +127,9 @@ function AccountModal() {
                             value={username}
                             onChange={handleUsernameEvent}
                         />
+                        <p className='account_error'>
+                            {loginUsernameError}
+                        </p>
                     </div>
 
                     <div>
@@ -108,6 +141,9 @@ function AccountModal() {
                             value={password}
                             onChange={handlePasswordEvent}
                         />
+                        <p className='account_error'>
+                            {loginPasswordError}
+                        </p>
                     </div>
 
                     <div>
@@ -190,6 +226,14 @@ function AccountModal() {
                         Go to login page
                     </p>
                     
+                </div>
+            )}
+
+            {page === "loginsuccessful" && (
+                <div>
+                    <p>
+                        Successfully Logged In
+                    </p>
                 </div>
             )}
             
