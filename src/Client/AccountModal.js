@@ -22,9 +22,13 @@ function AccountModal() {
 
     const loginAccount = () => {
 
+        let loginAccountObject 
     }
 
     const createAccount = () => {
+
+        let validUsername = false;
+        let validPassword = false;
 
         if(username.length < 8){
             setUsernameError("Your username is too short");
@@ -33,6 +37,7 @@ function AccountModal() {
             setUsernameError("Your username is too long");
         }
         else{
+            validUsername = true;
             setUsernameError("");
         }
 
@@ -50,24 +55,32 @@ function AccountModal() {
                 setPasswordError("Your password must have at least one number");
             }
             else{
+                validPassword = true;
                 setPasswordError("");
             }
         }
 
-        let createAccountObject = {
-            username: username,
-            password: password
-        }
+        if(validUsername && validPassword){
 
-        axios.post("http://localhost:8000/createaccount", createAccountObject)
-        .then(res => {
-            if(res.data === "Username already taken"){
-                setUsernameError("Your username is already taken")
+            let createAccountObject = {
+                username: username,
+                password: password
             }
-            else if(res.data === "Username is available"){
-                setPage("accountcreated");
-            }
-        });
+    
+            axios.post("http://localhost:8000/createaccount", createAccountObject)
+            .then(res => {
+                if(res.data === "Username already taken"){
+                    setUsernameError("Your username is already taken")
+                }
+                else if(res.data === "Username is available"){
+                    setPage("accountcreated");
+
+                    setUsername("");
+                    setPassword("");
+                }
+            });
+
+        }
     }
 
 

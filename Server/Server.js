@@ -134,3 +134,11 @@ app.post('/createaccount', async(req, res) => {
     }
 });
 
+
+app.use(
+    session({
+        secret: 'temp',
+        cookie: {maxAge: 30000},
+        saveUninitialized: false
+    })
+);
