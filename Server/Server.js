@@ -86,10 +86,6 @@ app.listen(port, ()=>{
     console.log("Server started successfully");
 });
 
-app.post("/newdeadline", async (req, res) => {
-    console.log(req.body)
-});
-
 app.post('/createaccount', async(req, res) => {
 
     /*
@@ -193,4 +189,12 @@ app.post('/sessionexists', async(req, res) => {
     else{
         res.send('Session False')
     }
+});
+
+app.post('/getusername', async(req, res) => {
+    res.send(req.session.username);
+});
+
+app.post('/newdeadline', async (req, res) => {
+    console.log(req.body)
 });

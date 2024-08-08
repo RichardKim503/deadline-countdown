@@ -3,12 +3,12 @@ import axios from 'axios';
 
 function NavBar({toggleModal}) {
 
+    const [username, setUsername] = useState('');
     const [doesSessionExist, setDoesSessionExist] = useState(false);
     const [refreshPage, setRefreshPage] = useState(false);
 
     useEffect(() => {
         axios.post('http://localhost:8000/sessionexists')
-        
         .then(res => {
             if(res.data === 'Session True'){
                 setDoesSessionExist(true);
@@ -16,8 +16,17 @@ function NavBar({toggleModal}) {
             else if(res.data === 'Session False'){
                 setDoesSessionExist(false);
             }
-        })
+        });
       }, []);
+
+      useEffect(() => {
+        if(doesSessionExist){
+            axios.post('http://localhost:8000/getusername')
+            .then(res => {
+                setUsername(res.data)
+            })
+        }
+      });
 
     useEffect(() => {
         let timer;
@@ -44,11 +53,19 @@ function NavBar({toggleModal}) {
         <div id='navbar'>
             
             {doesSessionExist ? 
-                <button onClick={logout}>
-                    Logout
-                </button>
+                <div>
+                    <p>
+                        Logged in as {username}
+                    </p>
+                    <button onClick={logout}>
+                        Logout
+                    </button>
+                </div>
             :
                 <div>
+                    <p>
+                        You are not logged in
+                    </p>
                     <button onClick={toggleModal}>
                         Login
                     </button>
