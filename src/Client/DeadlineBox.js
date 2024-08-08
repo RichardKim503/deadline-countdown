@@ -162,15 +162,23 @@ export default function DeadlineBox(){
 
         // Removes timezone information at the end
         date = date.substring(0, 28);
+
+        let hour = parseInt(date.substring(20, 22), 10);
         
         // If it is AM, just add 'AM' at the end
         // If it is PM, take the hour, subtract 12, then add 'PM'
         if(formatMerideim === 'AM'){
+
+            if(hour === 0){
+                date = date.substring(0, 20) + '12' + date.substring(22);
+            }
             date += ' AM';
         }
         else if(formatMerideim === 'PM'){
-            let hour = parseInt(date.substring(20, 22), 10);
-            hour -= 12;
+            
+            if(hour !== 12){
+                hour -= 12;
+            }
 
             if(hour < 10){
                 date = date.substring(0, 20) + '0' + hour + date.substring(22);
@@ -259,27 +267,30 @@ export default function DeadlineBox(){
                         </p>
                     )}
 
-                    {!showEnd ?
-                        <p>
-                            Ending {formatDate(endDate)}
-                        </p>
-                    :
-                        <p>
-                            Started {formatDate(startDate)}
-                        </p>
-                    }
+                    <div>
+                        {showEnd ?
+                            <p>
+                                Ending {formatDate(endDate)}
+                            </p>
+                        :
+                            <p>
+                                Started {formatDate(startDate)}
+                            </p>
+                        }
 
-                    <button
-                        className='button_icon'
-                        onClick={setStartEnd}
-                    >
-                        <img 
-                            src={switchIcon}
-                            alt='Switch'
-                            height={32}
-                            width={32}
-                        />
-                    </button>
+                        <button
+                            className='button_icon'
+                            onClick={setStartEnd}
+                        >
+                            <img 
+                                src={switchIcon}
+                                alt='Switch'
+                                height={32}
+                                width={32}
+                            />
+                        </button>
+                    </div>
+                    
                     
 
                 </div>
