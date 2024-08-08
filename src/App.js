@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './modal.css';
@@ -16,9 +16,8 @@ function App() {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
-    console.log("here2")
     setModal(!modal);
-}
+  }
 
   return (
     <div>

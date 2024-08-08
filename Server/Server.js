@@ -143,7 +143,7 @@ app.use(
             pool: client
         }),
         secret: 'temp',
-        cookie: {maxAge: 30000},
+        cookie: {maxAge: oneYear},
         saveUninitialized: false,
         resave: false
     })
@@ -181,11 +181,16 @@ app.post('/logout', async(req, res) => {
         }
 
         res.clearCookie('connect.sid');
+
+        res.send('Log out successful')
     });
 });
 
 app.post('/sessionexists', async(req, res) => {
-    if(req.session.user){
-        res.send
+    if(req.session.username){
+        res.send('Session True')
+    }
+    else{
+        res.send('Session False')
     }
 });

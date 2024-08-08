@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function AccountModal() {
 
@@ -12,6 +12,20 @@ function AccountModal() {
 
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+
+    const [refreshPage, setRefreshPage] = useState(false);
+
+    useEffect(() => {
+        let timer;
+        if(refreshPage) {
+            timer = setTimeout(() => {
+                setRefreshPage(false);
+                window.location.reload();
+            }, 3000);
+        }
+
+        return () => clearTimeout(timer);
+    }, [refreshPage]);
 
     const handleUsernameEvent = (event) => {
         setUsername(event.target.value);
@@ -51,6 +65,8 @@ function AccountModal() {
 
             if(validLoginUsername && validLoginPassword){
                 setPage("loginsuccessful");
+
+                setRefreshPage(true);
             }
         });
     }
@@ -232,7 +248,10 @@ function AccountModal() {
             {page === "loginsuccessful" && (
                 <div>
                     <p>
-                        Successfully Logged In
+                        Successfully logged in
+                    </p>
+                    <p>
+                        Refreshing page in just a moment
                     </p>
                 </div>
             )}
