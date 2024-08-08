@@ -88,4 +88,6 @@ time in milliseconds
 sql injection attack protection
 clean up vulerabilities
 encrypt passwords
+
+persistent edit when we edit the deadline
 */

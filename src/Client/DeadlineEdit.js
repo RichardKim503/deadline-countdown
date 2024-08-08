@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ErrorModal from './ErrorModal';
 import axios from 'axios';
 
-export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
+export default function DeadlineEdit(
+    {updateDeadline, setEdit, editTitle, setStartDate, setEndDate, setFormatMerideim}){
 
     const [title, setTitle] = useState("");
     const [month, setMonth] = useState();
@@ -236,6 +237,13 @@ export default function DeadlineEdit({updateDeadline, setEdit, editTitle}){
                 startDate: new Date().toString(),
                 endDate: deadlineString
             }
+
+            setStartDate(new Date().toString());
+            setEndDate(deadlineString);
+            setFormatMerideim(meridiem)
+
+
+
 
 
 

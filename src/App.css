@@ -160,19 +160,12 @@ button{
   border: 2px solid;
 }
 
-.edit_icon{
+.button_icon{
   background-color: transparent;
   border: transparent;
   cursor: pointer;
   position: relative;
 
-}
-
-.delete_icon{
-  background-color: transparent;
-  border: transparent;
-  cursor: pointer;
-  position: relative;
 }
 
 .edit_delete_icon_container{

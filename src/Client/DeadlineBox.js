@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DeadlineEdit from './DeadlineEdit';
 import editIcon from "../Assets/editIcon.png";
 import deleteIcon from "../Assets/deleteIcon.png";
+import switchIcon from "../Assets/switchIcon.png";
 
 export default function DeadlineBox(){
 
@@ -10,6 +11,11 @@ export default function DeadlineBox(){
     const [exist, doesExist] = useState(false);
     const [edit, setEdit] = useState(false);
     const [displayDelete, setDisplayDelete] = useState(false);
+
+    const [showEnd, setShowEnd] = useState(true);
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [formatMerideim, setFormatMerideim] = useState('');
 
     const [stateReset, resetter] = useState(0);
 
@@ -111,6 +117,80 @@ export default function DeadlineBox(){
         doesExist(false);
     }
 
+    const setStartEnd = () => {
+        setShowEnd(!showEnd)
+    }
+
+    const formatDate = (date) => {
+
+        let result = '';
+
+        let day = date.substring(0, date.indexOf(" "));
+
+        switch(day){
+            case 'Mon':
+                result += "Monday, "
+                break;
+            case 'Tue':
+                result += "Tuesday, "
+                break;
+            case 'Wed':
+                result += "Wednesday, "
+                break;
+            case 'Thu':
+                result += "Thursday, "
+                break;
+            case 'Fri':
+                result += "Friday, "
+                break;
+            case 'Sat':
+                result += "Saturday, "
+                break;
+            case 'Sun':
+                result += "Sunday, "
+                break;
+            default:
+                result += "Logsday, "
+                break;
+        }
+
+        // Adds a comma between the day and year
+        date = date.substring(0, 10) + ', ' + date.substring(11);
+
+        // Adds 'at' between the year and the time
+        date = date.substring(0, 16) + ' at ' + date.substring(17);
+
+        // Removes timezone information at the end
+        date = date.substring(0, 28);
+        
+        // If it is AM, just add 'AM' at the end
+        // If it is PM, take the hour, subtract 12, then add 'PM'
+        if(formatMerideim === 'AM'){
+            date += ' AM';
+        }
+        else if(formatMerideim === 'PM'){
+            let hour = parseInt(date.substring(20, 22), 10);
+            hour -= 12;
+
+            if(hour < 10){
+                date = date.substring(0, 20) + '0' + hour + date.substring(22);
+            }
+            else{
+                date = date.substring(0, 20) + hour + date.substring(22);
+            }
+            
+            date += ' PM';
+        }
+
+        // Removes generated day format
+        date = date.slice(4);
+
+        result += date;
+
+        return result;
+
+    }
+
 
     return(
         <div className='deadline_container'>
@@ -130,7 +210,7 @@ export default function DeadlineBox(){
                     {exist && (
                         <div className='edit_delete_icon_container'>
                             <button 
-                                className='edit_icon'
+                                className='button_icon'
                                 onClick={showEdit}
                             >
                                 <img
@@ -142,7 +222,7 @@ export default function DeadlineBox(){
                             </button>
 
                             <button 
-                                className='delete_icon'
+                                className='button_icon'
                                 onClick={showDelete}
                             >
                                 <img 
@@ -178,6 +258,30 @@ export default function DeadlineBox(){
                             Your time has expired
                         </p>
                     )}
+
+                    {!showEnd ?
+                        <p>
+                            Ending {formatDate(endDate)}
+                        </p>
+                    :
+                        <p>
+                            Started {formatDate(startDate)}
+                        </p>
+                    }
+
+                    <button
+                        className='button_icon'
+                        onClick={setStartEnd}
+                    >
+                        <img 
+                            src={switchIcon}
+                            alt='Switch'
+                            height={32}
+                            width={32}
+                        />
+                    </button>
+                    
+
                 </div>
             )}
 
@@ -187,6 +291,9 @@ export default function DeadlineBox(){
                         updateDeadline = {updateDeadline}
                         setEdit = {setEdit}
                         editTitle = {editTitle}
+                        setStartDate = {setStartDate}
+                        setEndDate = {setEndDate}
+                        setFormatMerideim = {setFormatMerideim}
                     />
 
                     <button onClick={hideEdit}>
