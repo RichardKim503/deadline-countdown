@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const oneYear = 365 * 24 * 60 * 60 * 1000;
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -173,8 +174,18 @@ app.post('/login', async(req, res) => {
     
 });
 
+app.post('/logout', async(req, res) => {
+    req.session.destroy(err => {
+        if(err){
+            console.log(err);
+        }
+
+        res.clearCookie('connect.sid');
+    });
+});
+
 app.post('/sessionexists', async(req, res) => {
     if(req.session.user){
-
+        res.send
     }
-})
+});
