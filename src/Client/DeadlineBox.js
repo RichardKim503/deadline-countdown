@@ -267,32 +267,32 @@ export default function DeadlineBox(){
                         </p>
                     )}
 
-                    <div>
-                        {showEnd ?
-                            <p>
-                                Ending {formatDate(endDate)}
-                            </p>
-                        :
-                            <p>
-                                Started {formatDate(startDate)}
-                            </p>
-                        }
-
-                        <button
-                            className='button_icon'
-                            onClick={setStartEnd}
-                        >
-                            <img 
-                                src={switchIcon}
-                                alt='Switch'
-                                height={32}
-                                width={32}
-                            />
-                        </button>
-                    </div>
-                    
-                    
-
+                    {!displayDelete && (
+                        <div>
+                            {showEnd ?
+                                <p>
+                                    Ending {formatDate(endDate)}
+                                </p>
+                            :
+                                <p>
+                                    Started {formatDate(startDate)}
+                                </p>
+                            }
+    
+                            <button
+                                className='button_icon'
+                                onClick={setStartEnd}
+                            >
+                                <img 
+                                    src={switchIcon}
+                                    alt='Switch'
+                                    height={32}
+                                    width={32}
+                                />
+                            </button>
+                        </div>
+                        
+                    )}
                 </div>
             )}
 
